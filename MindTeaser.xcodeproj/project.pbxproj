@@ -12,9 +12,11 @@
 		5FD3B46E1E21390A0047F4AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FD3B46C1E21390A0047F4AA /* Main.storyboard */; };
 		5FD3B4701E21390A0047F4AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FD3B46F1E21390A0047F4AA /* Assets.xcassets */; };
 		5FD3B4731E21390A0047F4AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FD3B4711E21390A0047F4AA /* LaunchScreen.storyboard */; };
+		9995333DE44FE14A64178F6A /* Pods_MindTeaser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE068A25EDE45AE780617C5 /* Pods_MindTeaser.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CE068A25EDE45AE780617C5 /* Pods_MindTeaser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MindTeaser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD3B4651E21390A0047F4AA /* MindTeaser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindTeaser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD3B4681E21390A0047F4AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FD3B46A1E21390A0047F4AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +24,9 @@
 		5FD3B46F1E21390A0047F4AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FD3B4721E21390A0047F4AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5FD3B4741E21390A0047F4AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FD3B47A1E2140A30047F4AA /* MindTeaser-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MindTeaser-Bridging-Header.h"; sourceTree = "<group>"; };
+		8E25440D47E1BECC61E1B8AD /* Pods-MindTeaser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MindTeaser.release.xcconfig"; path = "Pods/Target Support Files/Pods-MindTeaser/Pods-MindTeaser.release.xcconfig"; sourceTree = "<group>"; };
+		A75E5762FE3A50E046B11D3F /* Pods-MindTeaser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MindTeaser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MindTeaser/Pods-MindTeaser.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +34,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9995333DE44FE14A64178F6A /* Pods_MindTeaser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		292223019F86CEA45ED2B3AC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A75E5762FE3A50E046B11D3F /* Pods-MindTeaser.debug.xcconfig */,
+				8E25440D47E1BECC61E1B8AD /* Pods-MindTeaser.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		485680E6C3BE5BD78691433D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CE068A25EDE45AE780617C5 /* Pods_MindTeaser.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5FD3B45C1E2139090047F4AA = {
 			isa = PBXGroup;
 			children = (
 				5FD3B4671E21390A0047F4AA /* MindTeaser */,
 				5FD3B4661E21390A0047F4AA /* Products */,
+				292223019F86CEA45ED2B3AC /* Pods */,
+				485680E6C3BE5BD78691433D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +85,7 @@
 				5FD3B46F1E21390A0047F4AA /* Assets.xcassets */,
 				5FD3B4711E21390A0047F4AA /* LaunchScreen.storyboard */,
 				5FD3B4741E21390A0047F4AA /* Info.plist */,
+				5FD3B47A1E2140A30047F4AA /* MindTeaser-Bridging-Header.h */,
 			);
 			path = MindTeaser;
 			sourceTree = "<group>";
@@ -71,9 +97,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FD3B4771E21390A0047F4AA /* Build configuration list for PBXNativeTarget "MindTeaser" */;
 			buildPhases = (
+				CE2A9BA44057616EDCCD9B67 /* [CP] Check Pods Manifest.lock */,
 				5FD3B4611E2139090047F4AA /* Sources */,
 				5FD3B4621E2139090047F4AA /* Frameworks */,
 				5FD3B4631E2139090047F4AA /* Resources */,
+				71DC5C8E31AE5A573F2EEA18 /* [CP] Embed Pods Frameworks */,
+				EB806B92D919E35F9587831E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +125,7 @@
 				TargetAttributes = {
 					5FD3B4641E2139090047F4AA = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -130,6 +160,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		71DC5C8E31AE5A573F2EEA18 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MindTeaser/Pods-MindTeaser-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE2A9BA44057616EDCCD9B67 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB806B92D919E35F9587831E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MindTeaser/Pods-MindTeaser-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5FD3B4611E2139090047F4AA /* Sources */ = {
@@ -258,24 +336,31 @@
 		};
 		5FD3B4781E21390A0047F4AA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A75E5762FE3A50E046B11D3F /* Pods-MindTeaser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MindTeaser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.karoop.MindTeaser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MindTeaser/MindTeaser-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5FD3B4791E21390A0047F4AA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E25440D47E1BECC61E1B8AD /* Pods-MindTeaser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MindTeaser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.karoop.MindTeaser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MindTeaser/MindTeaser-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -299,6 +384,7 @@
 				5FD3B4791E21390A0047F4AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
