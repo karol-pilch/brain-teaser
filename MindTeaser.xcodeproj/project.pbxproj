@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F2A3BB31E227D1D00C3EA6B /* AnimationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A3BB21E227D1D00C3EA6B /* AnimationEngine.swift */; };
 		5FD3B4691E21390A0047F4AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3B4681E21390A0047F4AA /* AppDelegate.swift */; };
 		5FD3B46B1E21390A0047F4AA /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3B46A1E21390A0047F4AA /* LoginVC.swift */; };
 		5FD3B46E1E21390A0047F4AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FD3B46C1E21390A0047F4AA /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		2CE068A25EDE45AE780617C5 /* Pods_MindTeaser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MindTeaser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F2A3BB21E227D1D00C3EA6B /* AnimationEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationEngine.swift; sourceTree = "<group>"; };
 		5FD3B4651E21390A0047F4AA /* MindTeaser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindTeaser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD3B4681E21390A0047F4AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FD3B46A1E21390A0047F4AA /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5F2A3BB11E227D0E00C3EA6B /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5F2A3BB21E227D1D00C3EA6B /* AnimationEngine.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		5FD3B45C1E2139090047F4AA = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +93,7 @@
 		5FD3B4671E21390A0047F4AA /* MindTeaser */ = {
 			isa = PBXGroup;
 			children = (
+				5F2A3BB11E227D0E00C3EA6B /* Util */,
 				5FD95A131E22628A008905A7 /* Controller */,
 				5FD95A121E22627E008905A7 /* VIew */,
 				5FD3B4681E21390A0047F4AA /* AppDelegate.swift */,
@@ -240,6 +251,7 @@
 				5FD95A171E226883008905A7 /* CustomButton.swift in Sources */,
 				5FD3B46B1E21390A0047F4AA /* LoginVC.swift in Sources */,
 				5FD3B4691E21390A0047F4AA /* AppDelegate.swift in Sources */,
+				5F2A3BB31E227D1D00C3EA6B /* AnimationEngine.swift in Sources */,
 				5FD95A151E2262BA008905A7 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -82,6 +82,11 @@
                             <constraint firstItem="gJa-kW-r0q" firstAttribute="top" secondItem="mpt-d9-L2F" secondAttribute="bottom" constant="35" id="yhW-TT-XgG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailConstraint" destination="64g-1K-uF5" id="sx3-bY-nP4"/>
+                        <outlet property="loginConstraint" destination="05T-l5-hvV" id="MX0-FH-etI"/>
+                        <outlet property="passwordConstraint" destination="09n-Ke-Ojq" id="im8-0l-3Nd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
