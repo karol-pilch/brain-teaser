@@ -15,9 +15,14 @@ class LoginVC: UIViewController {
 	
 	@IBOutlet weak var loginConstraint: NSLayoutConstraint!
 	
+	var animationEngine: AnimationEngine!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		
+		self.animationEngine = AnimationEngine(constraints: [emailConstraint, passwordConstraint, loginConstraint])
+		
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -26,7 +31,8 @@ class LoginVC: UIViewController {
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-		
+		// Only start animating after the view appears.
+		animationEngine.animateOnScreen(delay: 0.5)
 	}
 }
 
