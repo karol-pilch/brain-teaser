@@ -44,6 +44,8 @@ class CustomButton: UIButton {
 		self.tintColor = fontColor
 		self.layer.cornerRadius = cornerRadius
 		
+		self.setNeedsLayout()
+		
 		// 2. Register animation for events:
 		
 		// Make small when touch enters:
