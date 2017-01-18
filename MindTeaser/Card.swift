@@ -8,6 +8,7 @@
 
 import UIKit
 
+// @IBDesignable
 class Card: UIView {
 	
 	// MARK: Image file handling
@@ -18,7 +19,10 @@ class Card: UIView {
 	
 	func selectShape() {
 		currentImageIndex = Int(arc4random_uniform(UInt32(filenames.count)))
-		imageView.image = UIImage(named: filenames[currentImageIndex])
+		let imageName = filenames[currentImageIndex]
+		if let newImage = UIImage(named: imageName) {
+			imageView.image = newImage
+		}
 	}
 	
 	// MARK: Custom looks
@@ -29,7 +33,7 @@ class Card: UIView {
 		}
 	}
 	
-	@IBInspectable var shadowColor: CGColor = UIColor.black.cgColor {
+	@IBInspectable var shadowColor: UIColor = UIColor.black {
 		didSet {
 			setupView()
 		}
@@ -53,17 +57,24 @@ class Card: UIView {
 		}
 	}
 	
+	@IBInspectable var shadowOpacity: Float = 0.3 {
+		didSet {
+			setupView()
+		}
+	}
+	
 	
 	func setupView() {
 		// Corner radius:
 		self.layer.cornerRadius = cornerRadius
 		
 		// Shadow:
-		self.layer.shadowColor = shadowColor
+		self.layer.shadowColor = shadowColor.cgColor
 		self.layer.shadowRadius = shadowRadius
+		self.layer.shadowOpacity = shadowOpacity
 		self.layer.shadowOffset = CGSize(width: shadowOffsetX, height: shadowOffsetY)
 		
-		self.setNeedsLayout()
+		self.setNeedsDisplay()
 	}
 	
 	override func awakeFromNib() {

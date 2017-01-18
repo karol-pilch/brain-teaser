@@ -7,31 +7,49 @@
 //
 
 import UIKit
+import pop
 
 class GameVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 	
-		// HERE: Lesson 7 3:13
-    
+	// MARK: UI elements
+	@IBOutlet weak var noBtn: CustomButton!
+	@IBOutlet weak var yesBtn: CustomButton!
+	@IBOutlet weak var titleLabel: UILabel!
+	
+	var currentCard: Card!
+	
+	// MARK: View behaviour
+	
+	var isStarted: Bool = false
+	
+	func startGame() {
+		noBtn.isHidden = false
+		yesBtn.setTitle("Yes", for: .normal)
+		titleLabel.text = "Is this image the same as the previous?"
+	}
+	
+	func checkAnswer() {
+		
+	}
+	
+	@IBAction func yesPressed(_ sender: CustomButton) {
+		if isStarted {
+			checkAnswer()
+		}
+		else {
+			startGame()
+		}
+	}
+	// MARK: View setup
+  override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		currentCard = Bundle.main.loadNibNamed("Card", owner: self, options: nil)![0] as! Card
+		currentCard.center = AnimationEngine.screenCenterPosition
+		
+		self.view.addSubview(currentCard)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+		// Do any additional setup after loading the view.
+  }
 
 }

@@ -116,8 +116,11 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                 <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="yesPressed:" destination="6LN-yv-nDW" eventType="touchUpInside" id="1at-Lo-a1S"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="400" horizontalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QR0-Gp-6JG" customClass="CustomButton" customModule="MindTeaser" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="400" horizontalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QR0-Gp-6JG" customClass="CustomButton" customModule="MindTeaser" customModuleProvider="target">
                                 <rect key="frame" x="20" y="602" width="120" height="45"/>
                                 <color key="backgroundColor" red="0.29979473350000002" green="0.59221667050000004" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
@@ -128,7 +131,7 @@
                                 <state key="normal" title="No"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember this image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcu-0A-pu6">
-                                <rect key="frame" x="101.5" y="40" width="172" height="21"/>
+                                <rect key="frame" x="101.5" y="90" width="172" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="500" constant="172" id="axl-5Z-ugg"/>
                                 </constraints>
@@ -150,9 +153,14 @@
                             <constraint firstAttribute="trailing" secondItem="Nzc-Re-Bnx" secondAttribute="trailing" constant="20" id="OLW-TK-PJm">
                                 <variation key="widthClass=regular" constant="80"/>
                             </constraint>
-                            <constraint firstItem="kcu-0A-pu6" firstAttribute="top" secondItem="s0Q-Qc-U3w" secondAttribute="bottom" constant="20" id="wIj-9K-lK4"/>
+                            <constraint firstItem="kcu-0A-pu6" firstAttribute="top" secondItem="s0Q-Qc-U3w" secondAttribute="bottom" constant="70" id="wIj-9K-lK4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="noBtn" destination="QR0-Gp-6JG" id="Igy-PR-Xmz"/>
+                        <outlet property="titleLabel" destination="kcu-0A-pu6" id="MdC-EQ-O2J"/>
+                        <outlet property="yesBtn" destination="Nzc-Re-Bnx" id="GBt-Ag-xps"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdI-dv-Why" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
