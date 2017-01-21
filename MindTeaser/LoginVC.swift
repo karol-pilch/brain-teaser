@@ -31,6 +31,10 @@ class LoginVC: UIViewController {
 		self.elementsIndex = animator.hide(constraints: self.elements)
 		
 	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		self.animator.animateHorizontallyOffScreen(constraintsAt: self.elementsIndex, to: .Right, after: 0.0)
+	}
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()

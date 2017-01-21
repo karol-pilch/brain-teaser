@@ -40,15 +40,33 @@ class GameVC: UIViewController {
 			startGame()
 		}
 	}
+	
 	// MARK: View setup
+	
+	var animator = ConstraintAnimator()
+	var cardIndex = ConstraintAnimator.ManagedConstraintIndex()
+	
+	override func viewWillAppear(_ animated: Bool) {
+		currentCard = Bundle.main.loadNibNamed("Card", owner: self, options: nil)![0] as! Card
+		
+		
+		// Center the card using constraints:
+		self.view.addSubview(currentCard!)
+		currentCard.translatesAutoresizingMaskIntoConstraints = false
+		currentCard.widthAnchor.constraint(equalToConstant: currentCard.bounds.width)
+		currentCard.heightAnchor.constraint(equalToConstant: currentCard.bounds.width)
+		currentCard.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+		
+		let cardCenter = currentCard.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0)
+		cardCenter.isActive = true
+		
+		// ... and hide it
+		cardIndex = animator.hide(constraints: [cardCenter])
+	}
   override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		currentCard = Bundle.main.loadNibNamed("Card", owner: self, options: nil)![0] as! Card
-		currentCard.center = AnimationEngine.screenCenterPosition
-		
-		self.view.addSubview(currentCard)
-
+		animator.animateHorizontallyOnScreen(constraintsAt: cardIndex, from: .Left, after: 0.2)
 		// Do any additional setup after loading the view.
   }
 
