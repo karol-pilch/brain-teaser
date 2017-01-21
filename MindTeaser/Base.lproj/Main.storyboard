@@ -69,7 +69,7 @@
                                 </constraints>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <segue destination="6LN-yv-nDW" kind="show" id="OgE-Pa-xUN"/>
+                                    <segue destination="6LN-yv-nDW" kind="show" action="showDetailViewController:sender:" id="OgE-Pa-xUN"/>
                                 </connections>
                             </button>
                         </subviews>

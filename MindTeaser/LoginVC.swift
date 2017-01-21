@@ -15,13 +15,20 @@ class LoginVC: UIViewController {
 	
 	@IBOutlet weak var loginConstraint: NSLayoutConstraint!
 	
-	var animationEngine: AnimationEngine!
+//	var animationEngine: AnimationEngine!
+	
+	var animator: ConstraintAnimator!
+	var elements: [NSLayoutConstraint]!
+	
+	var elementsIndex: ConstraintAnimator.ManagedConstraintIndex!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		self.animator = ConstraintAnimator()
+		self.elements = [emailConstraint, passwordConstraint, loginConstraint]
 		
-		self.animationEngine = AnimationEngine(constraints: [emailConstraint, passwordConstraint, loginConstraint])
+		self.elementsIndex = animator.hide(constraints: self.elements)
 		
 	}
 
@@ -32,7 +39,7 @@ class LoginVC: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		// Only start animating after the view appears.
-		animationEngine.animateOnScreen(delay: 0.5)
+		animator.animateHorizontallyOnScreen(constraintsAt: self.elementsIndex)
 	}
 }
 
