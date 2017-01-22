@@ -63,7 +63,6 @@ class Card: UIView {
 		}
 	}
 	
-	
 	func setupView() {
 		// Corner radius:
 		self.layer.cornerRadius = cornerRadius

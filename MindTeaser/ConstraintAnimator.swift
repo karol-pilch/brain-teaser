@@ -46,7 +46,7 @@ class ConstraintAnimator {
 	var springSpeed: CGFloat = 12.0
 	var frictionDelta: CGFloat = 8.0
 	
-	static let defaultDelay: Double = 0.8
+	var defaultDelay: Double = 0.8
 	
 	init() {}
 	
@@ -67,8 +67,9 @@ class ConstraintAnimator {
 	}
 	
 	// Helper: Calculates the dispatch deadline for a delay, from now.
-	private func calcDeadline(for delay: Double) -> DispatchTime {
-		return DispatchTime.now() + DispatchTimeInterval.nanoseconds(Int(Double(NSEC_PER_SEC) * delay))
+	private func calcDeadline(for delay: Double?) -> DispatchTime {
+		let d = delay ?? defaultDelay
+		return DispatchTime.now() + DispatchTimeInterval.nanoseconds(Int(Double(NSEC_PER_SEC) * d))
 	}
 	
 	// Helper: Calculates the off-screen position for a given side.
@@ -95,7 +96,7 @@ class ConstraintAnimator {
 	
 	
 	// Animates a bunch of constraints onto screen. Hides them away first.
-	func animateHorizontallyOnScreen(constraintsAt index: ManagedConstraintIndex, from side: HorizontalScreenSide = .Left, after delay: Double = ConstraintAnimator.defaultDelay) {
+	func animateHorizontallyOnScreen(constraintsAt index: ManagedConstraintIndex, from side: HorizontalScreenSide = .Left, after delay: Double? = nil, withCallback callback: (() -> ())? = nil) {
 		
 		// Hide first:
 		hide(at: index, on: side)
@@ -108,7 +109,11 @@ class ConstraintAnimator {
 				let anim = createMoveAnim(n: i)
 				anim?.toValue = con.originalConstant
 				
-				// HERE: I don't think we're animating the right constraints :/
+				if let completionCallback = callback {
+					anim?.completionBlock = {(_: POPAnimation?, _: Bool) -> Void in
+						completionCallback()
+					}
+				}
 				
 				DispatchQueue.main.asyncAfter(deadline: calcDeadline(for: delay)) {
 					con.constraint.pop_add(anim, forKey: "moveOnScreen")
@@ -119,19 +124,25 @@ class ConstraintAnimator {
 	}
 	
 	// Convenience overload for the other function.
-	func animateHorizontallyOnScreen(constraints: [NSLayoutConstraint], from side: HorizontalScreenSide = .Left, after delay: Double = ConstraintAnimator.defaultDelay) -> ManagedConstraintIndex {
+	func animateHorizontallyOnScreen(constraints: [NSLayoutConstraint], from side: HorizontalScreenSide = .Left, after delay: Double? = nil, withCallback callback: (() -> ())? = nil) -> ManagedConstraintIndex {
 		let index = add(constraints: constraints)
 		animateHorizontallyOnScreen(constraintsAt: index, from: side, after: delay)
 		return index
 	}
 	
 	// Moves a bunch of constraints off screen.
-	func animateHorizontallyOffScreen(constraintsAt index: ManagedConstraintIndex, to side: HorizontalScreenSide = .Right, after delay: Double = ConstraintAnimator.defaultDelay) {
+	func animateHorizontallyOffScreen(constraintsAt index: ManagedConstraintIndex, to side: HorizontalScreenSide = .Right, after delay: Double? = nil, withCallback callback: (() -> ())? = nil) {
 		if let constraints = managedConstraints[index] {
 			var i = 0
 			for con in constraints {
 				let anim = createMoveAnim(n: i)
 				anim?.toValue = offScreenPosition(for: side)
+				
+				if let completionCallback = callback {
+					anim?.completionBlock = {(_: POPAnimation?, _: Bool) -> Void in
+						completionCallback()
+					}
+				}
 				
 				DispatchQueue.main.asyncAfter(deadline: calcDeadline(for: delay)) {
 					con.constraint.pop_add(anim, forKey: kPOPLayoutConstraintConstant)
@@ -143,9 +154,9 @@ class ConstraintAnimator {
 	}
 	
 	// Convenience overload for the above. First adds the bunch of constraints to storage.
-	func animateHorizontallyOffScreen(constraints: [NSLayoutConstraint], to side: HorizontalScreenSide = .Right, after delay: Double = ConstraintAnimator.defaultDelay) -> ManagedConstraintIndex {
+	func animateHorizontallyOffScreen(constraints: [NSLayoutConstraint], to side: HorizontalScreenSide = .Right, after delay: Double? = nil, withCallback callback: (() -> ())? = nil) -> ManagedConstraintIndex {
 		let index = add(constraints: constraints)
-		animateHorizontallyOffScreen(constraintsAt: index, to: side, after: delay)
+		animateHorizontallyOffScreen(constraintsAt: index, to: side, after: delay, withCallback: callback)
 		return index
 	}
 	

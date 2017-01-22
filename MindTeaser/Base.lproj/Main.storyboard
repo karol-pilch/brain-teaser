@@ -129,6 +129,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                 <state key="normal" title="No"/>
+                                <connections>
+                                    <action selector="noPressed:" destination="6LN-yv-nDW" eventType="touchUpInside" id="PhU-Cj-Fl8"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember this image:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcu-0A-pu6">
                                 <rect key="frame" x="101.5" y="90" width="172" height="21"/>

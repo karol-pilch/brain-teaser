@@ -16,7 +16,7 @@ class GameVC: UIViewController {
 	@IBOutlet weak var yesBtn: CustomButton!
 	@IBOutlet weak var titleLabel: UILabel!
 	
-	var currentCard: Card!
+	var currentCard: ConstrainedCard!
 	
 	// MARK: View behaviour
 	
@@ -32,6 +32,24 @@ class GameVC: UIViewController {
 		
 	}
 	
+	// HERE: Doing it with one card only is too slow. Use two cards and animate on / off screen simultaneously.
+	
+	func showNextCard() {
+		let oldCard = currentCard!
+		
+		// Animate current card off-screen:
+		animator.animateHorizontallyOffScreen(constraintsAt: oldCard.animatorIndex!, to: .Left) {
+			let _ = self.animator.removeConstraints(at: oldCard.animatorIndex!)
+			oldCard.view.removeFromSuperview()
+		}
+		
+		// Create a new card and animate it on screen!
+		currentCard = createCard()
+		currentCard.animatorIndex = animator.hide(constraints: [currentCard.center], on: .Right)
+		currentCard.view.isHidden = false
+		animator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!, from: .Right)
+	}
+	
 	@IBAction func yesPressed(_ sender: CustomButton) {
 		if isStarted {
 			checkAnswer()
@@ -39,35 +57,49 @@ class GameVC: UIViewController {
 		else {
 			startGame()
 		}
+		
+		showNextCard()
+	}
+	
+	@IBAction func noPressed(_ sender: CustomButton) {
+		checkAnswer()
+		showNextCard()
 	}
 	
 	// MARK: View setup
-	
 	var animator = ConstraintAnimator()
-	var cardIndex = ConstraintAnimator.ManagedConstraintIndex()
+	typealias ConstrainedCard = (view: Card, center: NSLayoutConstraint, animatorIndex: ConstraintAnimator.ManagedConstraintIndex?)
 	
-	override func viewWillAppear(_ animated: Bool) {
-		currentCard = Bundle.main.loadNibNamed("Card", owner: self, options: nil)![0] as! Card
+	// Creates a new card and hides it immediately.
+	func createCard() -> ConstrainedCard {
+		let newCard = Bundle.main.loadNibNamed("Card", owner: self, options: nil)![0] as! Card
+		newCard.isHidden = true
+		self.view.addSubview(newCard)
 		
+		newCard.translatesAutoresizingMaskIntoConstraints = false
+		newCard.widthAnchor.constraint(equalToConstant: newCard.bounds.width).isActive = true
+		newCard.heightAnchor.constraint(equalToConstant: newCard.bounds.width).isActive = true
+		newCard.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
 		
-		// Center the card using constraints:
-		self.view.addSubview(currentCard!)
-		currentCard.translatesAutoresizingMaskIntoConstraints = false
-		currentCard.widthAnchor.constraint(equalToConstant: currentCard.bounds.width)
-		currentCard.heightAnchor.constraint(equalToConstant: currentCard.bounds.width)
-		currentCard.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
-		
-		let cardCenter = currentCard.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0)
+		let cardCenter = newCard.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0)
 		cardCenter.isActive = true
 		
-		// ... and hide it
-		cardIndex = animator.hide(constraints: [cardCenter])
+		return (view: newCard, center: cardCenter, animatorIndex: nil)
 	}
-  override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		animator.animateHorizontallyOnScreen(constraintsAt: cardIndex, from: .Left, after: 0.2)
-		// Do any additional setup after loading the view.
-  }
-
+	
+	override func viewDidLoad() {
+		animator.defaultDelay = 0
+		animator.springSpeed = 4
+		animator.springBounciness = 4
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		currentCard = createCard()
+		currentCard.animatorIndex = animator.hide(constraints: [currentCard.center])
+		currentCard.view.isHidden = false
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		animator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!)
+	}
 }
