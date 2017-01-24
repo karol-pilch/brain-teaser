@@ -6,6 +6,40 @@
 //  Copyright © 2017 Karol Pilch. All rights reserved.
 //
 
+/*
+
+Exercise Requirements
+=====================
+
+* Create a timer 
+  - that counts down from 1:00 to 0:00
+  - that has a UILabel
+  - that shows the clock counting down every second
+* When the timer ends you will show UI that shows how many correct 
+  and how many incorrect choices you made (this can be textual or 
+  graphical UI)
+* Every time you tap the correct answer a green check mark appears 
+  overlaying the bottom right corner of the card for a brief 
+  moment (you must find the graphical asset for this)
+* Every time you tap the wrong answer a red x appears overlaying 
+  the bottom right corner of the card for a brief moment (you must 
+  find the graphical asset for this)
+* When the timer ends there will be a replay button that restarts 
+  the game
+
+My plan
+=======
+
+* Make a timer class:
+  - start / stop / reset
+  - completion and update blocks
+  - length of time
+* Handle answers and count them
+* Results: A new view
+* Reset game function(s) in GameVC.
+
+*/
+
 import UIKit
 import pop
 
@@ -15,8 +49,11 @@ class GameVC: UIViewController {
 	@IBOutlet weak var noBtn: CustomButton!
 	@IBOutlet weak var yesBtn: CustomButton!
 	@IBOutlet weak var titleLabel: UILabel!
+	@IBOutlet weak var remainingTimeLabel: UILabel!
 	
 	var currentCard: ConstrainedCard!
+	
+	var timer: CountdownTimer!
 	
 	// MARK: View behaviour
 	
@@ -53,9 +90,17 @@ class GameVC: UIViewController {
 	@IBAction func yesPressed(_ sender: CustomButton) {
 		if isStarted {
 			checkAnswer()
+			
 		}
 		else {
 			startGame()
+		}
+		
+		// Just testing:
+		if timer.isRunning {
+			timer.pause()
+		} else {
+			timer.start()
 		}
 		
 		showNextCard()
@@ -87,10 +132,18 @@ class GameVC: UIViewController {
 		return (view: newCard, center: cardCenter, animatorIndex: nil)
 	}
 	
+	func updateTime() {
+		self.remainingTimeLabel.text = String(timer.remainingTime)
+	}
+	
 	override func viewDidLoad() {
 		animator.defaultDelay = 0
 		animator.springSpeed = 4
 		animator.springBounciness = 4
+		timer = CountdownTimer(duration: 60.0)
+		timer.everyTick = {
+			self.updateTime()
+		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -101,5 +154,6 @@ class GameVC: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		animator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!)
+		timer.start()
 	}
 }
