@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5F2A3BB31E227D1D00C3EA6B /* ConstraintAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A3BB21E227D1D00C3EA6B /* ConstraintAnimator.swift */; };
+		5F47D1DE1E392356008828C7 /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F47D1DD1E392356008828C7 /* TimerView.xib */; };
+		5F47D1E01E392399008828C7 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F47D1DF1E392399008828C7 /* TimerView.swift */; };
 		5F4E08191E37CAE700E1FC03 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E08181E37CAE700E1FC03 /* CountdownTimer.swift */; };
 		5F76E6B11E2D5C08006671D9 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F76E6B01E2D5C08006671D9 /* Card.swift */; };
 		5F76E6B31E2D5C16006671D9 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F76E6B21E2D5C16006671D9 /* Card.xib */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		2CE068A25EDE45AE780617C5 /* Pods_MindTeaser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MindTeaser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2A3BB21E227D1D00C3EA6B /* ConstraintAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintAnimator.swift; sourceTree = "<group>"; };
+		5F47D1DD1E392356008828C7 /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
+		5F47D1DF1E392399008828C7 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		5F4E08181E37CAE700E1FC03 /* CountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 		5F76E6B01E2D5C08006671D9 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		5F76E6B21E2D5C16006671D9 /* Card.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				5FD95A161E226883008905A7 /* CustomButton.swift */,
 				5F76E6B01E2D5C08006671D9 /* Card.swift */,
 				5F76E6B21E2D5C16006671D9 /* Card.xib */,
+				5F47D1DD1E392356008828C7 /* TimerView.xib */,
+				5F47D1DF1E392399008828C7 /* TimerView.swift */,
 			);
 			name = VIew;
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F47D1DE1E392356008828C7 /* TimerView.xib in Resources */,
 				5FD3B4731E21390A0047F4AA /* LaunchScreen.storyboard in Resources */,
 				5FD3B4701E21390A0047F4AA /* Assets.xcassets in Resources */,
 				5FD3B46E1E21390A0047F4AA /* Main.storyboard in Resources */,
@@ -269,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F47D1E01E392399008828C7 /* TimerView.swift in Sources */,
 				5FD95A171E226883008905A7 /* CustomButton.swift in Sources */,
 				5FD3B46B1E21390A0047F4AA /* LoginVC.swift in Sources */,
 				5F76E6B11E2D5C08006671D9 /* Card.swift in Sources */,

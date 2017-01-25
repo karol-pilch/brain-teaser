@@ -28,7 +28,7 @@ class CountdownTimer {
 	// ***** Publicly available getters that tell the state of the timer:
 	private(set) var elapsedTime: CFTimeInterval = 0.0
 	var remainingTime: CFTimeInterval {
-		return duration - elapsedTime
+		return max(duration - elapsedTime, 0.0)
 	}
 	private(set) var isRunning: Bool = false
 	private(set) var isPaused: Bool = false

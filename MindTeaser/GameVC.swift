@@ -49,11 +49,8 @@ class GameVC: UIViewController {
 	@IBOutlet weak var noBtn: CustomButton!
 	@IBOutlet weak var yesBtn: CustomButton!
 	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var remainingTimeLabel: UILabel!
 	
 	var currentCard: ConstrainedCard!
-	
-	var timer: CountdownTimer!
 	
 	// MARK: View behaviour
 	
@@ -63,6 +60,10 @@ class GameVC: UIViewController {
 		noBtn.isHidden = false
 		yesBtn.setTitle("Yes", for: .normal)
 		titleLabel.text = "Is this image the same as the previous?"
+		
+		isStarted = true
+		
+		timerView.start()
 	}
 	
 	func checkAnswer() {
@@ -96,13 +97,6 @@ class GameVC: UIViewController {
 			startGame()
 		}
 		
-		// Just testing:
-		if timer.isRunning {
-			timer.pause()
-		} else {
-			timer.start()
-		}
-		
 		showNextCard()
 	}
 	
@@ -110,6 +104,8 @@ class GameVC: UIViewController {
 		checkAnswer()
 		showNextCard()
 	}
+	
+	@IBOutlet weak var timerView: TimerView!
 	
 	// MARK: View setup
 	var animator = ConstraintAnimator()
@@ -132,17 +128,13 @@ class GameVC: UIViewController {
 		return (view: newCard, center: cardCenter, animatorIndex: nil)
 	}
 	
-	func updateTime() {
-		self.remainingTimeLabel.text = String(timer.remainingTime)
-	}
-	
 	override func viewDidLoad() {
 		animator.defaultDelay = 0
 		animator.springSpeed = 4
 		animator.springBounciness = 4
-		timer = CountdownTimer(duration: 60.0)
-		timer.everyTick = {
-			self.updateTime()
+		
+		timerView.whenFinished = {
+			print ("Timer is done!")
 		}
 	}
 	
@@ -154,6 +146,5 @@ class GameVC: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		animator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!)
-		timer.start()
 	}
 }
