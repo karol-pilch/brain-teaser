@@ -41,6 +41,7 @@ My plan
 */
 
 import UIKit
+import AVFoundation
 import pop
 
 class GameVC: UIViewController {
@@ -50,10 +51,13 @@ class GameVC: UIViewController {
 	@IBOutlet weak var yesBtn: CustomButton!
 	@IBOutlet weak var titleLabel: UILabel!
 	
+	@IBOutlet weak var feedbackLabel: UILabel!
+	@IBOutlet weak var feedbackLabelLeading: NSLayoutConstraint!
+	var feedbackAnimatorIndex: ConstraintAnimator.ManagedConstraintIndex!
+	
 	var currentCard: ConstrainedCard!
 	
 	// MARK: View behaviour
-	
 	var isStarted: Bool = false
 	
 	func startGame() {
@@ -66,31 +70,68 @@ class GameVC: UIViewController {
 		timerView.start()
 	}
 	
-	func checkAnswer() {
-		
+	// MARK: Answer handling
+	enum Answer { case Yes; case No }
+	
+	var previousCardIndex: Int!
+	var goodAnswersCount: Int = 0
+	var badAnswersCount: Int = 0
+	
+	var feedbackAnimator = ConstraintAnimator()
+	
+	func popFeedback(correct: Bool) {
+		feedbackLabel.text = correct ? "✅" : "❌"
+		feedbackAnimator.animateHorizontallyOnScreen(constraintsAt: feedbackAnimatorIndex) {
+			self.feedbackAnimator.animateHorizontallyOffScreen(constraintsAt: self.feedbackAnimatorIndex, to: .Left)
+		}
 	}
 	
-	// HERE: Doing it with one card only is too slow. Use two cards and animate on / off screen simultaneously.
+	
+	func check(answer: Answer) {
+		let correct = (previousCardIndex == currentCard.view.currentImageIndex) == (answer == .Yes)
+		if correct {
+			goodAnswersCount += 1
+		} else {
+			badAnswersCount += 1
+		}
+		
+		handle(correct: correct)
+		
+		previousCardIndex = currentCard.view.currentImageIndex
+	}
+	
+	
+	func handle(correct: Bool) {
+		popFeedback(correct: correct)
+		if correct {
+			playSound(forKey: "ding")
+		}
+		else {
+			playSound(forKey: "bad")
+		}
+	}
+	
 	
 	func showNextCard() {
 		let oldCard = currentCard!
 		
 		// Animate current card off-screen:
-		animator.animateHorizontallyOffScreen(constraintsAt: oldCard.animatorIndex!, to: .Left) {
-			let _ = self.animator.removeConstraints(at: oldCard.animatorIndex!)
+		cardAnimator.animateHorizontallyOffScreen(constraintsAt: oldCard.animatorIndex!, to: .Left) {
+			let _ = self.cardAnimator.removeConstraints(at: oldCard.animatorIndex!)
 			oldCard.view.removeFromSuperview()
 		}
 		
 		// Create a new card and animate it on screen!
 		currentCard = createCard()
-		currentCard.animatorIndex = animator.hide(constraints: [currentCard.center], on: .Right)
+		currentCard.animatorIndex = cardAnimator.hide(constraints: [currentCard.center], on: .Right)
 		currentCard.view.isHidden = false
-		animator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!, from: .Right)
+		cardAnimator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!, from: .Right)
 	}
+	
 	
 	@IBAction func yesPressed(_ sender: CustomButton) {
 		if isStarted {
-			checkAnswer()
+			check(answer: .Yes)
 			
 		}
 		else {
@@ -100,22 +141,39 @@ class GameVC: UIViewController {
 		showNextCard()
 	}
 	
+	
 	@IBAction func noPressed(_ sender: CustomButton) {
-		checkAnswer()
+		check(answer: .No)
 		showNextCard()
 	}
 	
+	
 	@IBOutlet weak var timerView: TimerView!
 	
+	
 	// MARK: View setup
-	var animator = ConstraintAnimator()
+	var cardAnimator = ConstraintAnimator()
 	typealias ConstrainedCard = (view: Card, center: NSLayoutConstraint, animatorIndex: ConstraintAnimator.ManagedConstraintIndex?)
+	
+	
+	// Sound library:
+	var sounds = [String: AVAudioPlayer]()
+	func playSound(forKey key: String) {
+		if let player = sounds[key] {
+			if player.isPlaying {
+				player.stop()
+			}
+			player.currentTime = 0.0
+			player.play()
+		}
+	}
+	
 	
 	// Creates a new card and hides it immediately.
 	func createCard() -> ConstrainedCard {
 		let newCard = Bundle.main.loadNibNamed("Card", owner: self, options: nil)![0] as! Card
 		newCard.isHidden = true
-		self.view.addSubview(newCard)
+		view.insertSubview(newCard, belowSubview: feedbackLabel)
 		
 		newCard.translatesAutoresizingMaskIntoConstraints = false
 		newCard.widthAnchor.constraint(equalToConstant: newCard.bounds.width).isActive = true
@@ -128,23 +186,50 @@ class GameVC: UIViewController {
 		return (view: newCard, center: cardCenter, animatorIndex: nil)
 	}
 	
+	
 	override func viewDidLoad() {
-		animator.defaultDelay = 0
-		animator.springSpeed = 4
-		animator.springBounciness = 4
+		
+		// Prepare animators:
+		cardAnimator.defaultDelay = 0
+		cardAnimator.springSpeed = 4
+		cardAnimator.springBounciness = 4
+		
+		feedbackAnimator.defaultDelay = 0.0
+		feedbackAnimator.springSpeed = 17
+		feedbackAnimator.springBounciness = 13
+		
+		// Off-screen position for this constraint is a lot closer than default:
+		feedbackAnimator.offScreenPositionLeft = -50.0
+		
+		feedbackAnimatorIndex = feedbackAnimator.hide(constraints: [feedbackLabelLeading])
 		
 		timerView.whenFinished = {
 			print ("Timer is done!")
 		}
+		
+		// Load the sounds
+		if let player = try? AVAudioPlayer(contentsOf: Bundle.main.url(forResource: "ding", withExtension: "wav", subdirectory: nil)!) {
+			player.prepareToPlay()
+			sounds["ding"] = player
+		}
+		
+		if let player = try? AVAudioPlayer(contentsOf: Bundle.main.url(forResource: "bad", withExtension: "wav", subdirectory: nil)!) {
+			player.prepareToPlay()
+			sounds["bad"] = player
+		}
+		
 	}
+	
 	
 	override func viewWillAppear(_ animated: Bool) {
 		currentCard = createCard()
-		currentCard.animatorIndex = animator.hide(constraints: [currentCard.center])
+		previousCardIndex = currentCard.view.currentImageIndex
+		currentCard.animatorIndex = cardAnimator.hide(constraints: [currentCard.center])
 		currentCard.view.isHidden = false
 	}
 	
+	
 	override func viewDidAppear(_ animated: Bool) {
-		animator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!)
+		cardAnimator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!)
 	}
 }

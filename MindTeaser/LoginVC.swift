@@ -32,6 +32,10 @@ class LoginVC: UIViewController {
 		
 	}
 	
+	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+		return UIInterfaceOrientationMask.portrait
+	}
+	
 	override func viewWillDisappear(_ animated: Bool) {
 		self.animator.animateHorizontallyOffScreen(constraintsAt: self.elementsIndex, to: .Right, after: 0.0)
 	}

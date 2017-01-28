@@ -84,28 +84,61 @@ class TimerView: UIView {
 		timer?.reset()
 	}
 	
-	// MARK: Elements
+	// MARK: Elements and config
 	
 	@IBOutlet private weak var titleLabel: UILabel!
 	@IBOutlet private weak var timeLabel: UILabel!
 	
 	// The title
 	@IBInspectable var title: String? {
-		get {
-			return titleLabel.text
-		}
-		set {
-			if let text = newValue {
+		didSet {
+			if let text = title {
 				titleLabel.text = text + separator
 			}
 			else {
-				titleLabel.text = newValue
+				titleLabel.text = title
 			}
 		}
 	}
 	
 	// The string that separates the title from the time:
-	@IBInspectable var separator: String = ":"
+	@IBInspectable var separator: String = ":" {
+		didSet {
+			if let title = self.title {
+				titleLabel.text = title + separator
+			}
+		}
+	}
 	
+	// The text color:
+	@IBInspectable var color: UIColor = UIColor.darkText {
+		didSet {
+			timeLabel.textColor = color
+			titleLabel.textColor = color
+		}
+	}
 	
+	// The font:
+	var font: UIFont = UIFont.preferredFont(forTextStyle: .body) {
+		didSet {
+			titleLabel.font = font
+			timeLabel.font = font
+		}
+	}
+	
+	@IBInspectable var fontName: String = UIFont.systemFont(ofSize: 1).fontName {
+		didSet {
+			if let newFont = UIFont(name: fontName, size: fontSize) {
+				font = newFont
+			}
+		}
+	}
+	
+	@IBInspectable var fontSize: CGFloat = UIFont.systemFontSize {
+		didSet {
+			if let newFont = UIFont(name: fontName, size: fontSize) {
+				font = newFont
+			}
+		}
+	}
 }

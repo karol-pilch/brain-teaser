@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5F2A3BB31E227D1D00C3EA6B /* ConstraintAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2A3BB21E227D1D00C3EA6B /* ConstraintAnimator.swift */; };
+		5F2E12091E3BE343008E591A /* bad.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F2E12071E3BE343008E591A /* bad.wav */; };
+		5F2E120A1E3BE343008E591A /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F2E12081E3BE343008E591A /* ding.wav */; };
+		5F2E120C1E3BE386008E591A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2E120B1E3BE386008E591A /* AVFoundation.framework */; };
 		5F47D1DE1E392356008828C7 /* TimerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F47D1DD1E392356008828C7 /* TimerView.xib */; };
 		5F47D1E01E392399008828C7 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F47D1DF1E392399008828C7 /* TimerView.swift */; };
 		5F4E08191E37CAE700E1FC03 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E08181E37CAE700E1FC03 /* CountdownTimer.swift */; };
@@ -27,6 +30,9 @@
 /* Begin PBXFileReference section */
 		2CE068A25EDE45AE780617C5 /* Pods_MindTeaser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MindTeaser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2A3BB21E227D1D00C3EA6B /* ConstraintAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintAnimator.swift; sourceTree = "<group>"; };
+		5F2E12071E3BE343008E591A /* bad.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bad.wav; sourceTree = "<group>"; };
+		5F2E12081E3BE343008E591A /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
+		5F2E120B1E3BE386008E591A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5F47D1DD1E392356008828C7 /* TimerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerView.xib; sourceTree = "<group>"; };
 		5F47D1DF1E392399008828C7 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		5F4E08181E37CAE700E1FC03 /* CountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
@@ -52,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F2E120C1E3BE386008E591A /* AVFoundation.framework in Frameworks */,
 				9995333DE44FE14A64178F6A /* Pods_MindTeaser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +78,7 @@
 		485680E6C3BE5BD78691433D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F2E120B1E3BE386008E591A /* AVFoundation.framework */,
 				2CE068A25EDE45AE780617C5 /* Pods_MindTeaser.framework */,
 			);
 			name = Frameworks;
@@ -83,6 +91,15 @@
 				5F4E08181E37CAE700E1FC03 /* CountdownTimer.swift */,
 			);
 			name = Util;
+			sourceTree = "<group>";
+		};
+		5F2E12061E3BE331008E591A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				5F2E12071E3BE343008E591A /* bad.wav */,
+				5F2E12081E3BE343008E591A /* ding.wav */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		5F4E081A1E37E6B500E1FC03 /* Playgrounds */ = {
@@ -113,6 +130,7 @@
 		5FD3B4671E21390A0047F4AA /* MindTeaser */ = {
 			isa = PBXGroup;
 			children = (
+				5F2E12061E3BE331008E591A /* Sounds */,
 				5F4E081A1E37E6B500E1FC03 /* Playgrounds */,
 				5F2A3BB11E227D0E00C3EA6B /* Util */,
 				5FD95A131E22628A008905A7 /* Controller */,
@@ -213,6 +231,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F2E12091E3BE343008E591A /* bad.wav in Resources */,
+				5F2E120A1E3BE343008E591A /* ding.wav in Resources */,
 				5F47D1DE1E392356008828C7 /* TimerView.xib in Resources */,
 				5FD3B4731E21390A0047F4AA /* LaunchScreen.storyboard in Resources */,
 				5FD3B4701E21390A0047F4AA /* Assets.xcassets in Resources */,

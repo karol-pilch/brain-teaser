@@ -18,7 +18,27 @@ class ConstraintAnimator {
 		case Right
 	}
 	
-	// MARK: Managed constraints:
+	// MARK: Configuration
+	var springBounciness: CGFloat = 12.0
+	var springSpeed: CGFloat = 12.0
+	var frictionDelta: CGFloat = 8.0
+	
+	var defaultDelay: Double = 0.8
+	
+	// Let users override the screen positions for different constraints:
+	var offScreenPositionRight: CGFloat? = nil
+	var offScreenPositionLeft: CGFloat? = nil
+	
+	init() {}
+	
+	init(withBounciness bounciness: CGFloat, speed: CGFloat, frictionDelta: CGFloat) {
+		self.springBounciness = bounciness
+		self.springSpeed = speed
+		self.frictionDelta = frictionDelta
+	}
+
+	
+	// MARK: Managed constraints
 	typealias PersistentConstraint = (constraint: NSLayoutConstraint, originalConstant: CGFloat)
 	typealias ManagedConstraintIndex = Int
 	
@@ -42,20 +62,6 @@ class ConstraintAnimator {
 	}
 	
 	// MARK: Animation
-	var springBounciness: CGFloat = 12.0
-	var springSpeed: CGFloat = 12.0
-	var frictionDelta: CGFloat = 8.0
-	
-	var defaultDelay: Double = 0.8
-	
-	init() {}
-	
-	init(withBounciness bounciness: CGFloat, speed: CGFloat, frictionDelta: CGFloat) {
-		self.springBounciness = bounciness
-		self.springSpeed = speed
-		self.frictionDelta = frictionDelta
-	}
-	
 	// Helper: Creates a uniform POP animation.
 	private func createMoveAnim(n: Int = 0) -> POPSpringAnimation? {
 		let anim = POPSpringAnimation(propertyNamed: kPOPLayoutConstraintConstant)
@@ -74,7 +80,21 @@ class ConstraintAnimator {
 	
 	// Helper: Calculates the off-screen position for a given side.
 	private func offScreenPosition(for side: HorizontalScreenSide) -> CGFloat {
-		return UIScreen.main.bounds.width * (side == .Left ? -1 : 1)
+		if let override = side == .Left ? offScreenPositionLeft : offScreenPositionRight {
+			return override
+		}
+		else {
+			return UIScreen.main.bounds.width * (side == .Left ? -1 : 1)
+		}
+	}
+	
+	private func executeAfter(seconds delay: CFTimeInterval?, block: @escaping ()->()) {
+		if delay ?? defaultDelay > 0.0 {
+			DispatchQueue.main.asyncAfter(deadline: calcDeadline(for: delay), execute: block)
+		}
+		else {
+			block()
+		}
 	}
 	
 	
@@ -90,7 +110,7 @@ class ConstraintAnimator {
 	// Convenience overload for the other hide that first adds all constraints to the managedConstraints.
 	func hide(constraints: [NSLayoutConstraint], on side: HorizontalScreenSide = .Left) -> ManagedConstraintIndex {
 		let index = add(constraints: constraints)
-		hide(at: index)
+		hide(at: index, on: side)
 		return index
 	}
 	
@@ -115,9 +135,10 @@ class ConstraintAnimator {
 					}
 				}
 				
-				DispatchQueue.main.asyncAfter(deadline: calcDeadline(for: delay)) {
+				executeAfter(seconds: delay) {
 					con.constraint.pop_add(anim, forKey: "moveOnScreen")
 				}
+				
 				i += 1
 			}
 		}
@@ -144,8 +165,8 @@ class ConstraintAnimator {
 					}
 				}
 				
-				DispatchQueue.main.asyncAfter(deadline: calcDeadline(for: delay)) {
-					con.constraint.pop_add(anim, forKey: kPOPLayoutConstraintConstant)
+				executeAfter(seconds: delay) {
+					con.constraint.pop_add(anim, forKey: "moveOffScreen")
 				}
 				
 				i += 1
