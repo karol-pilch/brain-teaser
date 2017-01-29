@@ -6,17 +6,43 @@
 //  Copyright © 2017 Karol Pilch. All rights reserved.
 //
 
+/*
+
+To do:
+
+* Make the numbers pop up from nothingness
+* Make the pink view drop down from the top after a second
+
+*/
+
 import UIKit
 
 class ResultVC: UIViewController {
+	
+	// MARK: View setup:
+	@IBOutlet weak var correctLabel: UILabel!
+	@IBOutlet weak var incorrectLabel: UILabel!
+	
+	
+	// Data to display
+	var correctCount: Int = 0
+	var incorrectCount: Int = 0
+	
+	
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		correctLabel.text = String(correctCount)
+		incorrectLabel.text = String(incorrectCount)
+	}
+	
+	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+		return UIInterfaceOrientationMask.portrait
+	}
 
-        // Do any additional setup after loading the view.
-    }
-    
-
+	
+	
     /*
     // MARK: - Navigation
 

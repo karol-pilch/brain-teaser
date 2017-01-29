@@ -165,7 +165,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="Remaining time"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                        <real key="value" value="15"/>
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="fontName" value="Marker Felt"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -293,6 +293,9 @@
                                                 <real key="value" value="7"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="Acn-P1-je3" kind="unwind" unwindAction="unwindToGameWithSegue:" id="1w9-Ob-u3I"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98863071199999997" green="0.86673629279999997" blue="0.89400386809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -357,8 +360,13 @@
                             <constraint firstItem="Yas-Ab-Yu8" firstAttribute="leading" secondItem="PJU-Vq-r9g" secondAttribute="trailing" constant="8" id="uiC-wi-lsd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="correctLabel" destination="XAf-VJ-Spd" id="lI8-fP-kqw"/>
+                        <outlet property="incorrectLabel" destination="Yas-Ab-Yu8" id="4G9-X0-Uwu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DY9-84-GB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Acn-P1-je3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1482.4000000000001" y="37.331334332833585"/>
         </scene>

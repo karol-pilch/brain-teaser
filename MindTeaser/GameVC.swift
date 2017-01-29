@@ -64,6 +64,82 @@ class GameVC: UIViewController {
 		
 		timerView.start()
 	}
+
+	
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showResult" {
+			let result = segue.destination as! ResultVC
+			result.correctCount = goodAnswersCount
+			result.incorrectCount = badAnswersCount
+		}
+	}
+	
+	
+	func endGame() {
+		yesBtn.isEnabled = false
+		noBtn.isEnabled = false
+		
+		performSegue(withIdentifier: "showResult", sender: self)
+	}
+	
+	
+	@IBAction func unwindToGame(segue: UIStoryboardSegue) {
+		reset()
+	}
+	
+	
+	func reset() {
+		currentCard.view.removeFromSuperview()
+		goodAnswersCount = 0
+		badAnswersCount = 0
+		
+		yesBtn.setTitle("Start", for: .normal)
+		yesBtn.isEnabled = true
+		noBtn.isHidden = true
+		noBtn.isEnabled = true
+		
+		titleLabel.text = "Remember this image:"
+		
+		isStarted = false
+	}
+	
+	
+	func showNextCard() {
+		let oldCard = currentCard!
+		
+		// Animate current card off-screen:
+		cardAnimator.animateHorizontallyOffScreen(constraintsAt: oldCard.animatorIndex!, to: .Left) {
+			let _ = self.cardAnimator.removeConstraints(at: oldCard.animatorIndex!)
+			oldCard.view.removeFromSuperview()
+		}
+		
+		// Create a new card and animate it on screen!
+		currentCard = createCard()
+		currentCard.animatorIndex = cardAnimator.hide(constraints: [currentCard.center], on: .Right)
+		currentCard.view.isHidden = false
+		cardAnimator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!, from: .Right)
+	}
+	
+	
+	@IBAction func yesPressed(_ sender: CustomButton) {
+		if isStarted {
+			check(answer: .Yes)
+			
+		}
+		else {
+			startGame()
+		}
+		
+		showNextCard()
+	}
+	
+	
+	@IBAction func noPressed(_ sender: CustomButton) {
+		check(answer: .No)
+		showNextCard()
+	}
+	
 	
 	// MARK: Answer handling
 	enum Answer { case Yes; case No }
@@ -107,46 +183,9 @@ class GameVC: UIViewController {
 	}
 	
 	
-	func showNextCard() {
-		let oldCard = currentCard!
-		
-		// Animate current card off-screen:
-		cardAnimator.animateHorizontallyOffScreen(constraintsAt: oldCard.animatorIndex!, to: .Left) {
-			let _ = self.cardAnimator.removeConstraints(at: oldCard.animatorIndex!)
-			oldCard.view.removeFromSuperview()
-		}
-		
-		// Create a new card and animate it on screen!
-		currentCard = createCard()
-		currentCard.animatorIndex = cardAnimator.hide(constraints: [currentCard.center], on: .Right)
-		currentCard.view.isHidden = false
-		cardAnimator.animateHorizontallyOnScreen(constraintsAt: currentCard.animatorIndex!, from: .Right)
-	}
-	
-	
-	@IBAction func yesPressed(_ sender: CustomButton) {
-		if isStarted {
-			check(answer: .Yes)
-			
-		}
-		else {
-			startGame()
-		}
-		
-		showNextCard()
-	}
-	
-	
-	@IBAction func noPressed(_ sender: CustomButton) {
-		check(answer: .No)
-		showNextCard()
-	}
-	
-	
+	// MARK: View setup
 	@IBOutlet weak var timerView: TimerView!
 	
-	
-	// MARK: View setup
 	var cardAnimator = ConstraintAnimator()
 	typealias ConstrainedCard = (view: Card, center: NSLayoutConstraint, animatorIndex: ConstraintAnimator.ManagedConstraintIndex?)
 	
@@ -199,7 +238,7 @@ class GameVC: UIViewController {
 		feedbackAnimatorIndex = feedbackAnimator.hide(constraints: [feedbackLabelLeading])
 		
 		timerView.whenFinished = {
-			print ("Timer is done!")
+			self.endGame()
 		}
 		
 		// Load the sounds
