@@ -30,11 +30,6 @@ Exercise Requirements
 My plan
 =======
 
-* Make a timer class:
-  - start / stop / reset
-  - completion and update blocks
-  - length of time
-* Handle answers and count them
 * Results: A new view
 * Reset game function(s) in GameVC.
 
