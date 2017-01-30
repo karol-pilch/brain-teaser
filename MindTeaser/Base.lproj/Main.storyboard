@@ -318,9 +318,9 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAf-VJ-Spd">
-                                <rect key="frame" x="205" y="160" width="60" height="21"/>
+                                <rect key="frame" x="205" y="160" width="11.5" height="21"/>
+                                <color key="backgroundColor" red="0.14891991020000001" green="0.32905924320000002" blue="0.48603230710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="8Fq-RO-U5Q"/>
                                     <constraint firstAttribute="height" constant="21" id="apN-cS-o1r"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
@@ -328,10 +328,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yas-Ab-Yu8">
-                                <rect key="frame" x="205" y="191" width="60" height="21"/>
+                                <rect key="frame" x="205" y="191" width="11.5" height="21"/>
+                                <color key="backgroundColor" red="0.14891991020000001" green="0.32905924320000002" blue="0.48603230710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="PL2-9F-MTg"/>
-                                    <constraint firstAttribute="width" constant="60" id="TeB-8c-WMr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
                                 <color key="textColor" red="0.93866670129999996" green="0.27917474510000001" blue="0.43534809349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
