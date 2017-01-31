@@ -165,7 +165,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="Remaining time"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                        <real key="value" value="10"/>
+                                        <real key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="fontName" value="Marker Felt"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
@@ -260,66 +260,8 @@
                                 <color key="textColor" red="0.93866670129999996" green="0.27917474510000001" blue="0.43534809349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O5R-Qc-CXD" customClass="BetterView" customModule="MindTeaser" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="337" width="300" height="300"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazing!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd4-fU-jvi">
-                                        <rect key="frame" x="10" y="15" width="280" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="iuA-Ng-HFo"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
-                                        <color key="textColor" red="0.14891991020000001" green="0.32905924320000002" blue="0.48603230710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hearts" translatesAutoresizingMaskIntoConstraints="NO" id="Jch-Yy-Qzi">
-                                        <rect key="frame" x="70" y="70" width="160" height="160"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="160" id="Ctf-Ia-y0n"/>
-                                            <constraint firstAttribute="width" constant="160" id="Uv9-fy-xdZ"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xst-qW-1HX" customClass="CustomButton" customModule="MindTeaser" customModuleProvider="target">
-                                        <rect key="frame" x="75" y="245" width="150" height="40"/>
-                                        <color key="backgroundColor" red="0.022537564860000001" green="0.83928376439999997" blue="0.62755316500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Exo-hP-UV8"/>
-                                            <constraint firstAttribute="width" constant="150" id="T6f-gs-QbR"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
-                                        <state key="normal" title="Play again!"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="7"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="Acn-P1-je3" kind="unwind" unwindAction="unwindToGameWithSegue:" id="1w9-Ob-u3I"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.98863071199999997" green="0.86673629279999997" blue="0.89400386809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Jch-Yy-Qzi" firstAttribute="centerX" secondItem="O5R-Qc-CXD" secondAttribute="centerX" id="0Se-dV-9eb"/>
-                                    <constraint firstItem="Jch-Yy-Qzi" firstAttribute="centerY" secondItem="O5R-Qc-CXD" secondAttribute="centerY" id="6NX-Fa-D3D"/>
-                                    <constraint firstAttribute="width" constant="300" id="M19-ff-Nvn"/>
-                                    <constraint firstAttribute="trailing" secondItem="fd4-fU-jvi" secondAttribute="trailing" constant="10" id="OYG-8k-ow4"/>
-                                    <constraint firstItem="fd4-fU-jvi" firstAttribute="leading" secondItem="O5R-Qc-CXD" secondAttribute="leading" constant="10" id="Sr9-AU-6nO"/>
-                                    <constraint firstItem="fd4-fU-jvi" firstAttribute="top" secondItem="O5R-Qc-CXD" secondAttribute="top" constant="15" id="XWE-VE-glZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xst-qW-1HX" secondAttribute="bottom" constant="15" id="gF3-N7-PEF"/>
-                                    <constraint firstAttribute="height" constant="300" id="gxo-pU-mWx"/>
-                                    <constraint firstItem="fd4-fU-jvi" firstAttribute="centerX" secondItem="O5R-Qc-CXD" secondAttribute="centerX" id="ouv-0N-C9i"/>
-                                    <constraint firstItem="Xst-qW-1HX" firstAttribute="centerX" secondItem="O5R-Qc-CXD" secondAttribute="centerX" id="suq-41-bLH"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAf-VJ-Spd">
                                 <rect key="frame" x="205" y="160" width="11.5" height="21"/>
-                                <color key="backgroundColor" red="0.14891991020000001" green="0.32905924320000002" blue="0.48603230710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="apN-cS-o1r"/>
                                 </constraints>
@@ -329,7 +271,6 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yas-Ab-Yu8">
                                 <rect key="frame" x="205" y="191" width="11.5" height="21"/>
-                                <color key="backgroundColor" red="0.14891991020000001" green="0.32905924320000002" blue="0.48603230710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="PL2-9F-MTg"/>
                                 </constraints>
@@ -337,32 +278,103 @@
                                 <color key="textColor" red="0.93866670129999996" green="0.27917474510000001" blue="0.43534809349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bGM-0m-GFW" userLabel="Placeholder Summary">
+                                <rect key="frame" x="37.5" y="337" width="300" height="300"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O5R-Qc-CXD" customClass="BetterView" customModule="MindTeaser" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazing!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd4-fU-jvi">
+                                                <rect key="frame" x="10" y="15" width="280" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="iuA-Ng-HFo"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                                <color key="textColor" red="0.14891991020000001" green="0.32905924320000002" blue="0.48603230710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hearts" translatesAutoresizingMaskIntoConstraints="NO" id="Jch-Yy-Qzi">
+                                                <rect key="frame" x="70" y="70" width="160" height="160"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="Ctf-Ia-y0n"/>
+                                                    <constraint firstAttribute="width" constant="160" id="Uv9-fy-xdZ"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xst-qW-1HX" customClass="CustomButton" customModule="MindTeaser" customModuleProvider="target">
+                                                <rect key="frame" x="75" y="245" width="150" height="40"/>
+                                                <color key="backgroundColor" red="0.022537564860000001" green="0.83928376439999997" blue="0.62755316500000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Exo-hP-UV8"/>
+                                                    <constraint firstAttribute="width" constant="150" id="T6f-gs-QbR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                                <state key="normal" title="Play again!"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="7"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="Acn-P1-je3" kind="unwind" unwindAction="unwindToGameWithSegue:" id="1w9-Ob-u3I"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.98863071199999997" green="0.86673629279999997" blue="0.89400386809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="Jch-Yy-Qzi" firstAttribute="centerX" secondItem="O5R-Qc-CXD" secondAttribute="centerX" id="0Se-dV-9eb"/>
+                                            <constraint firstItem="Jch-Yy-Qzi" firstAttribute="centerY" secondItem="O5R-Qc-CXD" secondAttribute="centerY" id="6NX-Fa-D3D"/>
+                                            <constraint firstAttribute="trailing" secondItem="fd4-fU-jvi" secondAttribute="trailing" constant="10" id="OYG-8k-ow4"/>
+                                            <constraint firstItem="fd4-fU-jvi" firstAttribute="leading" secondItem="O5R-Qc-CXD" secondAttribute="leading" constant="10" id="Sr9-AU-6nO"/>
+                                            <constraint firstItem="fd4-fU-jvi" firstAttribute="top" secondItem="O5R-Qc-CXD" secondAttribute="top" constant="15" id="XWE-VE-glZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="Xst-qW-1HX" secondAttribute="bottom" constant="15" id="gF3-N7-PEF"/>
+                                            <constraint firstAttribute="width" constant="300" id="hh3-gA-ez0"/>
+                                            <constraint firstItem="fd4-fU-jvi" firstAttribute="centerX" secondItem="O5R-Qc-CXD" secondAttribute="centerX" id="ouv-0N-C9i"/>
+                                            <constraint firstItem="Xst-qW-1HX" firstAttribute="centerX" secondItem="O5R-Qc-CXD" secondAttribute="centerX" id="suq-41-bLH"/>
+                                            <constraint firstAttribute="height" constant="300" id="yDg-u0-ivi"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="0Ap-u0-WTg"/>
+                                    <constraint firstItem="O5R-Qc-CXD" firstAttribute="centerX" secondItem="bGM-0m-GFW" secondAttribute="centerX" id="1cA-lX-CRG"/>
+                                    <constraint firstAttribute="bottom" secondItem="O5R-Qc-CXD" secondAttribute="bottom" id="J2e-z7-g6p"/>
+                                    <constraint firstAttribute="height" constant="300" id="jwq-LL-YF2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99996644260000001" green="0.98829478029999995" blue="0.97636538740000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="O5R-Qc-CXD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="PJU-Vq-r9g" secondAttribute="bottom" constant="30" id="4jd-hK-QgM"/>
                             <constraint firstItem="PJU-Vq-r9g" firstAttribute="top" secondItem="AAy-uR-P0y" secondAttribute="bottom" constant="10" id="853-r6-s5F"/>
-                            <constraint firstItem="O5R-Qc-CXD" firstAttribute="centerX" secondItem="pHw-uT-Opr" secondAttribute="centerX" id="DYl-t4-N7T"/>
                             <constraint firstItem="PJU-Vq-r9g" firstAttribute="trailing" secondItem="AAy-uR-P0y" secondAttribute="trailing" id="KVl-hw-fNY"/>
                             <constraint firstItem="PJU-Vq-r9g" firstAttribute="leading" secondItem="AAy-uR-P0y" secondAttribute="leading" id="MmF-Xn-IJB"/>
+                            <constraint firstItem="bGM-0m-GFW" firstAttribute="centerX" secondItem="pHw-uT-Opr" secondAttribute="centerX" id="RPB-Zw-pvS"/>
                             <constraint firstItem="yGL-0k-MVi" firstAttribute="top" secondItem="Thc-Vg-y4J" secondAttribute="bottom" id="TI3-xt-Tbv"/>
                             <constraint firstItem="yGL-0k-MVi" firstAttribute="centerX" secondItem="pHw-uT-Opr" secondAttribute="centerX" id="TbK-Zl-8lV"/>
-                            <constraint firstItem="FRd-Il-5Xj" firstAttribute="top" secondItem="O5R-Qc-CXD" secondAttribute="bottom" constant="30" id="dQi-G9-3Yc">
-                                <variation key="heightClass=regular-widthClass=regular" constant="150"/>
-                            </constraint>
+                            <constraint firstItem="bGM-0m-GFW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Yas-Ab-Yu8" secondAttribute="bottom" constant="15" id="gAr-d4-nrg"/>
                             <constraint firstItem="AAy-uR-P0y" firstAttribute="leading" secondItem="pHw-uT-Opr" secondAttribute="leadingMargin" constant="23" id="geI-je-Fnf">
                                 <variation key="widthClass=regular" constant="200"/>
                             </constraint>
                             <constraint firstItem="XAf-VJ-Spd" firstAttribute="leading" secondItem="AAy-uR-P0y" secondAttribute="trailing" constant="8" id="j66-l5-CjS"/>
                             <constraint firstItem="XAf-VJ-Spd" firstAttribute="bottom" secondItem="AAy-uR-P0y" secondAttribute="bottom" id="jvU-yA-wAd"/>
-                            <constraint firstItem="AAy-uR-P0y" firstAttribute="top" secondItem="yGL-0k-MVi" secondAttribute="bottom" priority="500" constant="100" id="q85-yT-zfD"/>
+                            <constraint firstItem="AAy-uR-P0y" firstAttribute="top" secondItem="yGL-0k-MVi" secondAttribute="bottom" priority="750" constant="100" id="q85-yT-zfD"/>
                             <constraint firstItem="Yas-Ab-Yu8" firstAttribute="bottom" secondItem="PJU-Vq-r9g" secondAttribute="bottom" id="qmk-Iw-Ifm"/>
+                            <constraint firstItem="FRd-Il-5Xj" firstAttribute="top" secondItem="bGM-0m-GFW" secondAttribute="bottom" constant="30" id="swr-1J-qer">
+                                <variation key="heightClass=regular-widthClass=regular" constant="150"/>
+                            </constraint>
                             <constraint firstItem="Yas-Ab-Yu8" firstAttribute="leading" secondItem="PJU-Vq-r9g" secondAttribute="trailing" constant="8" id="uiC-wi-lsd"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="correctLabel" destination="XAf-VJ-Spd" id="lI8-fP-kqw"/>
                         <outlet property="incorrectLabel" destination="Yas-Ab-Yu8" id="4G9-X0-Uwu"/>
+                        <outlet property="summaryBottom" destination="J2e-z7-g6p" id="r7u-5Y-aYs"/>
+                        <outlet property="summaryImage" destination="Jch-Yy-Qzi" id="cyQ-5e-ugG"/>
+                        <outlet property="summaryLabel" destination="fd4-fU-jvi" id="yCa-tK-dpk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DY9-84-GB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
